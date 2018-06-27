@@ -2,7 +2,7 @@
   "name": "chatbot",
   "version": "1.0.0",
   "description": "this is a demo for chatbot development",
-  "repository": "https://github.com/JoelD95/chatbot.git",
+  "repository": "https://github.com/JoelD95/PokeChatbot",
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.18.3",
