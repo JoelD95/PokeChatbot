@@ -17,7 +17,6 @@ server.post('/poke', (req, res) => {
    // const movieToSearch = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.movie ? req.body.queryResult.parameters.movie : 'The Godfather';
    if(req.body.queryResult.action ==='pokemon.pokemon-custom'){
     const Pokemon= req.body.queryResult.parameters.choice.pokemon;
-    console.log(`${pokemon}`)
     const reqUrl = encodeURI(`http://pokeapi.co/api/v2/pokemon/${Pokemon}`);
     http.get(reqUrl, (responseFromAPI) => {
         let completeResponse = '';
