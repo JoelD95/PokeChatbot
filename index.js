@@ -24,7 +24,7 @@ request(`${hostname}${path}${link}/`,(err,resp,body)=> {
         let ability= abl.effect_entries[0].short_effect;
         console.log(poke.abilities[1].ability.name)
         return res.json({
-            speech: test+"special ability:"+poke.abilities[1].ability.name+": "+ability,
+            fulfillmentText: test+"special ability:"+poke.abilities[1].ability.name+": "+ability,
             displayText: test+"special ability:"+poke.abilities[1].ability.name+": "+ability,
             source: 'poke'
         })
