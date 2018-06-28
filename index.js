@@ -55,7 +55,7 @@ server.post('/poke',(req,res)=>{
                 return res.json({
                     fulfillmentText: `Move number ${moveNumber} is ${poke.moves[moveNumber-1].move.name}. ${poke.moves[moveNumber-1].move.name} ${effect} If you would like to learn about other moves this pokemon can use please enter another number, other wise enter no.`,
                     source: 'poke'
-                })}
+                })
             }
         })
     }
