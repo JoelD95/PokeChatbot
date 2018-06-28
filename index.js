@@ -10,16 +10,14 @@ const server = express();
 server.use(bodyParser.json());
 server.post('/poke',(req,res)=>{
     let link='';
-    if(req.body.queryResult.parameters.choice.number !== 'undefined'){
-        link=req.body.queryResult.parameters.choice.number;
+    if(req.body.queryResult.outputContexts[0].parameters.choice.number === ''){
+        link=req.body.queryResult.outputContexts[0].parameters.choice.number;
     }
-   else if (req.body.queryResult.parameters.choice.pokemon !== 'undefined'){
-        link=req.body.queryResult.parameters.choice.pokemon;
+   else if (req.body.queryResult.outputContexts[0].parameters.choice !== 'undefined'){
+        link=req.body.queryResult.outputContexts[0].parameters.choice;
     }
-    if (req.body.queryResult.parameters.choice.number === 'undefined' && req.body.queryResult.parameters.choice.pokemon === 'undefined'){
-        link=req.body.queryResult.parameters.choice
-    };
-request(`${hostname}${path}${link}/`,(err,resp,body)=> {
+
+    request(`${hostname}${path}${link}/`,(err,resp,body)=> {
     let test = '';
     let type2 = '';
     const poke = JSON.parse(body);
@@ -28,6 +26,7 @@ request(`${hostname}${path}${link}/`,(err,resp,body)=> {
         test = `${poke.name} is a ${poke.types[0].type.name} pokemon!`;
     }
     else {test = `${poke.name} is a ${poke.types[1].type.name}, ${poke.types[0].type.name} pokemon!`;}
+    if(req.body.queryResult.action ==="pokemon.pokemon-custom"){
     request(`${hostname}ability/${poke.abilities[1].ability.name}`,(err,resp,body)=> {
         const abl= JSON.parse(body);
         let ability= abl.effect_entries[0].short_effect;
@@ -37,9 +36,15 @@ request(`${hostname}${path}${link}/`,(err,resp,body)=> {
             source: 'poke'
         })
     
+    })}
+    else if(req.body.queryResult.action === "pokemon.pokemon-custom.getPokemon-custom.getPokemonMoves-custom"){
+        let moveNumber =req.body.queryResult.parameters.number;
+        let move = '';
+        move =`move number ${moveNumber}${poke.moves[moveNumber-1].move.name}`
+    }
+
     })
 
-})
 })
 server.listen((process.env.PORT || 8000), () => {
     console.log("Server is up and running...");
