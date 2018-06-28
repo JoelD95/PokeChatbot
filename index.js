@@ -9,6 +9,7 @@ const server = express();
 
 server.use(bodyParser.json());
 server.post('/poke',(req,res)=>{
+    if(req.body.queryResult.action==="pokemon.pokemon-custom"){
     let link='';
     if(req.body.queryResult.outputContexts[0].parameters.choice.number !== undefined){
         link=req.body.queryResult.outputContexts[0].parameters.choice.number;
@@ -59,10 +60,20 @@ server.post('/poke',(req,res)=>{
             }
         })
     }
-    
-
-    })
-
+    })}
+    else if(req.body.queryResult.action === "location.location-custom"){
+            console.log("*****")
+            let locationNumber =req.body.queryResult.parameters.number;
+            request(`${hostname}location-area/${locationNumber}/`,(err,resp,body)=>{
+                const loc= JSON.parse(body);
+                return res.json({
+                    fulfillmentText: `${loc.name} is the location with that id. Some of the pokemon that can be caught here are ${loc.pokemon_encounters[0].pokemon.name}, ${loc.pokemon_encounters[1].pokemon.name}, ${loc.pokemon_encounters[2].pokemon.name}, and ${loc.pokemon_encounters[3].pokemon.name}. You can encounter pokemon in this area by ${loc.encounter_method_rates[0].encounter_method.name}ing. Although other methods such as fishing could be possible keep a lookout! If you would like to get information about another area please enter a number between 1-500.`,
+                    source: 'poke'
+                })
+            })
+        
+    }
+    //else if(req.body.queryResult.action === "location.location-custom")
 })
 server.listen((process.env.PORT || 8000), () => {
     console.log("Server is up and running...");
