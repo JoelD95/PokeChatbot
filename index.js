@@ -44,10 +44,19 @@ server.post('/poke',(req,res)=>{
         move =`move number ${moveNumber} is ${poke.moves[moveNumber-1].move.name}`
         request(`${hostname}move/${poke.moves[moveNumber-1].move.name}`,(err,resp,body)=>{
             const power= JSON.parse(body);
+            const chance= power.effect_chance;
+            const effect= (power.effect_entries[0].short_effect).replace("$effect_chance%",chance+"%");
+            if(power.effect_chance === undefined){
             return res.json({
-                fulfillmentText: `Move number ${moveNumber}is ${poke.moves[moveNumber-1].move.name}. ${poke.moves[moveNumber-1].move.name} ${power.effect_entries[0].short_effect}`,
+                fulfillmentText: `Move number ${moveNumber} is ${poke.moves[moveNumber-1].move.name}. ${poke.moves[moveNumber-1].move.name} ${power.effect_entries[0].short_effect} If you would like to learn about other moves this pokemon can use please enter another number, other wise enter no.`,
                 source: 'poke'
-            })
+            })}
+            else{
+                return res.json({
+                    fulfillmentText: `Move number ${moveNumber} is ${poke.moves[moveNumber-1].move.name}. ${poke.moves[moveNumber-1].move.name} ${effect} If you would like to learn about other moves this pokemon can use please enter another number, other wise enter no.`,
+                    source: 'poke'
+                })}
+            }
         })
     }
 
