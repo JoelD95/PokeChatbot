@@ -2,12 +2,14 @@ const bodyParser = require('body-parser');
 const http = require('http');
 const request = require('request');
 const hostname = 'http://pokeapi.co/api/v2/'
-const path = 'pokemon/bulbasaur/'
+const path = 'pokemon/'
 const express = require('express');
 const server = express();
+
+
 server.use(bodyParser.json());
 server.post('/poke',(req,res)=>{
-request(`${hostname}${path}`,(err,resp,body)=> {
+request(`${hostname}${path}${req.body.queryResult.parameters.choice}/`,(err,resp,body)=> {
     let test = '';
     const poke = JSON.parse(body);
     test = `${poke.name} is a ${poke.types[1].type.name}, ${poke.types[0].type.name} pokemon!`;
