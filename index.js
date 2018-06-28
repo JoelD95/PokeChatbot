@@ -9,9 +9,13 @@ const server = express();
 
 server.use(bodyParser.json());
 server.post('/poke',(req,res)=>{
-    let name='';
-    let id='';
-request(`${hostname}${path}${req.body.queryResult.parameters.choice.id}${req.body.queryResult.parameters.choice.name}/`,(err,resp,body)=> {
+    let link='';
+    if(req.body.queryResult.parameters.choice.id === 'undefined'){
+        link=req.body.queryResult.parameters.choice.pokemon
+    }
+    else
+    link=req.body.queryResult.parameters.choice.id
+request(`${hostname}${path}${link}/`,(err,resp,body)=> {
     let test = '';
     const poke = JSON.parse(body);
     test = `${poke.name} is a ${poke.types[1].type.name}, ${poke.types[0].type.name} pokemon!`;
