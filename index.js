@@ -13,8 +13,10 @@ server.post('/poke',(req,res)=>{
     if(req.body.queryResult.parameters.choice.id === 'undefined'){
         link=req.body.queryResult.parameters.choice.pokemon
     }
-    else
+    else if (req.body.queryResult.parameters.choice.pokemon=== 'undefined')
     link=req.body.queryResult.parameters.choice.id
+    else
+    link=req.body.queryResult.parameters.choice
 request(`${hostname}${path}${link}/`,(err,resp,body)=> {
     let test = '';
     const poke = JSON.parse(body);
