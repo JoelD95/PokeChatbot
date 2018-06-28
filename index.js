@@ -10,13 +10,12 @@ const server = express();
 server.use(bodyParser.json());
 server.post('/poke',(req,res)=>{
     let link='';
-    if(req.body.queryResult.outputContexts[0].parameters.choice.number !== ''){
+    if(req.body.queryResult.outputContexts[0].parameters.choice.number !== undefined){
         link=req.body.queryResult.outputContexts[0].parameters.choice.number;
     }
-   else if (req.body.queryResult.outputContexts[0].parameters.choice !== 'undefined'){
+   else if (req.body.queryResult.outputContexts[0].parameters.choice !== ''){
         link=req.body.queryResult.outputContexts[0].parameters.choice;
     }
-    console.log("this "+link);
     request(`${hostname}${path}${link}/`,(err,resp,body)=> {
     let test = '';
     let type2 = '';
@@ -27,6 +26,7 @@ server.post('/poke',(req,res)=>{
     }
     else {test = `${poke.name} is a ${poke.types[1].type.name}, ${poke.types[0].type.name} pokemon!`;}
     if(req.body.queryResult.action ==="pokemon.pokemon-custom"){
+        console.log("$$$$$$$$$$$$$$$")
     request(`${hostname}ability/${poke.abilities[1].ability.name}`,(err,resp,body)=> {
         const abl= JSON.parse(body);
         let ability= abl.effect_entries[0].short_effect;
