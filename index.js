@@ -9,7 +9,9 @@ const server = express();
 
 server.use(bodyParser.json());
 server.post('/poke',(req,res)=>{
-request(`${hostname}${path}${req.body.queryResult.parameters.choice}/`,(err,resp,body)=> {
+    let name='';
+    let id='';
+request(`${hostname}${path}${req.body.queryResult.parameters.choice.id}${req.body.queryResult.parameters.choice.name}/`,(err,resp,body)=> {
     let test = '';
     const poke = JSON.parse(body);
     test = `${poke.name} is a ${poke.types[1].type.name}, ${poke.types[0].type.name} pokemon!`;
