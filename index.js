@@ -1,49 +1,28 @@
-'use strict';
-
-const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
-const API_KEY = require('./apiKey');
-
+const request = require('request');
+const hostname = 'http://pokeapi.co/api/v2/'
+const path = 'pokemon/bulbasaur/'
+const express = require('express');
 const server = express();
-server.use(bodyParser.urlencoded({
-    extended: true
-}));
-
 server.use(bodyParser.json());
-
-server.post('/poke', (req, res) => {
-
-   // const movieToSearch = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.movie ? req.body.queryResult.parameters.movie : 'The Godfather';
-   if(req.body.queryResult.action ==='pokemon.pokemon-custom'){
-    const Pokemon= req.body.queryResult.parameters.choice.pokemon;
-    const reqUrl = encodeURI(`http://pokeapi.co/api/v2/pokemon/${Pokemon}`);
-    http.get(reqUrl, (responseFromAPI) => {
-        let completeResponse = '';
-        responseFromAPI.on('data', (chunk) => {
-            completeResponse += chunk;
-        });
-        responseFromAPI.on('end', () => {
-            const pokemonChoice = JSON.parse(completeResponse);
-            let dataToSend = Pokemon === 'Pikachu' ? `I don't have the required info on that. Here's some info on Pikachu instead.\n` : '';
-            dataToSend += `${poke.name} is a ${poke.types.type} pokemon.`;
-
-            return res.json({
-                speech: dataToSend,
-                displayText: dataToSend,
-                source: 'poke'
-            });
-        });
-    }, (error) => {
+server.post('/poke',(req,res)=>{
+request(`${hostname}${path}`,(err,resp,body)=> {
+    let test = '';
+    const poke = JSON.parse(body);
+    test = `${poke.name} is a ${poke.types[1].type.name}, ${poke.types[0].type.name} pokemon!`;
+    request(`${hostname}ability/${poke.abilities[1].ability.name}`,(err,resp,body)=> {
+        const abl= JSON.parse(body);
+        let ability= abl.effect_entries[0].short_effect;
+        console.log(poke.abilities[1].ability.name)
         return res.json({
-            speech: 'Something went wrong!',
-            displayText: 'Something went wrong!',
-            source: 'poke'
-        });
-    });
-   }
-});
+            status: test+"special ability:"+poke.abilities[1].ability.name+": "+ability,
+        })
+    
+    })
 
+})
+})
 server.listen((process.env.PORT || 8000), () => {
     console.log("Server is up and running...");
 });
