@@ -10,13 +10,13 @@ const server = express();
 server.use(bodyParser.json());
 server.post('/poke',(req,res)=>{
     let link='';
-    if(req.body.queryResult.parameters.choice.id !== 'undefined'){
-        link=req.body.queryResult.parameters.choice.id;
+    if(req.body.queryResult.parameters.choice.number !== 'undefined'){
+        link=req.body.queryResult.parameters.choice.number;
     }
    else if (req.body.queryResult.parameters.choice.pokemon !== 'undefined'){
         link=req.body.queryResult.parameters.choice.pokemon;
     }
-    if (req.body.queryResult.parameters.choice.id === 'undefined' && req.body.queryResult.parameters.choice.pokemon === 'undefined'){
+    if (req.body.queryResult.parameters.choice.number === 'undefined' && req.body.queryResult.parameters.choice.pokemon === 'undefined'){
         link=req.body.queryResult.parameters.choice
     };
 request(`${hostname}${path}${link}/`,(err,resp,body)=> {
