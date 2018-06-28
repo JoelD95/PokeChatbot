@@ -38,9 +38,17 @@ server.post('/poke',(req,res)=>{
     
     })}
     else if(req.body.queryResult.action === "pokemon.pokemon-custom.getPokemon-custom.getPokemonMoves-custom"){
+        console.log("%%%%5")
         let moveNumber =req.body.queryResult.parameters.number;
         let move = '';
-        move =`move number ${moveNumber}${poke.moves[moveNumber-1].move.name}`
+        move =`move number ${moveNumber} is ${poke.moves[moveNumber-1].move.name}`
+        request(`${hostname}move/${poke.moves[moveNumber-1].move.name}`,(err,resp,body)=>{
+            const power= JSON.parse(body);
+            return res.json({
+                fulfillmentText: `Move number ${moveNumber}is ${poke.moves[moveNumber-1].move.name}. ${poke.moves[moveNumber-1].move.name} ${power.effect_entries[0].short_effect}`,
+                source: 'poke'
+            })
+        })
     }
 
     })
