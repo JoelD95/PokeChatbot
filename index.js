@@ -25,6 +25,8 @@ request(`${hostname}${path}${link}/`,(err,resp,body)=> {
         console.log(poke.abilities[1].ability.name)
         return res.json({
             status: test+"special ability:"+poke.abilities[1].ability.name+": "+ability,
+            displayText: test+"special ability:"+poke.abilities[1].ability.name+": "+ability,
+            source: 'poke'
         })
     
     })
