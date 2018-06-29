@@ -51,7 +51,7 @@ server.post('/poke',(req,res)=>{
         console.log("%%%%5")
         let moveNumber =req.body.queryResult.parameters.number;
         let move = '';
-        if(moveNumber>70){
+        if(moveNumber>70 || moveNumber<1){
             return res.json({
                 fulfillmentText: `Please enter a number between 1 and 70`,
                 source: 'poke'
