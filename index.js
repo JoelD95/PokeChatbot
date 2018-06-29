@@ -62,7 +62,7 @@ server.post('/poke',(req,res)=>{
     }
     })}
     else if(req.body.queryResult.action === "location.location-custom"){
-            console.log("*****")
+            console.log("*****");
             let locationNumber =req.body.queryResult.parameters.number;
             request(`${hostname}location-area/${locationNumber}/`,(err,resp,body)=>{
                 const loc= JSON.parse(body);
@@ -73,7 +73,33 @@ server.post('/poke',(req,res)=>{
             })
         
     }
-    //else if(req.body.queryResult.action === "location.location-custom")
+    else if(req.body.queryResult.action === "moves.moves-custom"){
+        console.log("^^^^^^^^");
+        let move= '';
+        console.log()
+        if(req.body.queryResult.parameters.moveChoice.number === undefined){
+            move=req.body.queryResult.parameters.moveChoice;
+        }
+        else{
+            move=req.body.queryResult.parameters.moveChoice.number;
+        }
+        request(`${hostname}move/${move}/`,(err,resp,body)=>{
+            const power= JSON.parse(body);
+            const chance= power.effect_chance;
+            const effect= (power.effect_entries[0].short_effect).replace("$effect_chance%",chance+"%");
+            if(power.effect_chance === undefined){
+            return res.json({
+                fulfillmentText: `${power.names[2].name} is a ${power.type.name} move. It has a PP of ${power.pp}. ${power.effect_entries[0].short_effect} This move has an accuracy of ${power.accuracy} and a power level of ${power.power}. ${power.flavor_text_entries[2].flavor_text}`,
+                source: 'poke'
+            })}
+            else{
+                return res.json({
+                    fulfillmentText: `${power.names[2].name} is a ${power.type.name} move. It has a PP of ${power.pp}. ${effect} This move has an accuracy of ${power.accuracy} and a power level of ${power.power}.`,
+                    source: 'poke'
+                })
+            }
+        })
+    }
 })
 server.listen((process.env.PORT || 8000), () => {
     console.log("Server is up and running...");
