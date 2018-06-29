@@ -116,12 +116,12 @@ server.post('/poke',(req,res)=>{
             const effect= (power.effect_entries[0].short_effect).replace("$effect_chance%",chance+"%");
             if(power.effect_chance === undefined){
             return res.json({
-                fulfillmentText: `${power.names[2].name} is a ${power.type.name} move. It has a PP of ${power.pp}. ${power.effect_entries[0].short_effect} This move has an accuracy of ${power.accuracy} and a power level of ${power.power}. ${power.flavor_text_entries[2].flavor_text}`,
+                fulfillmentText: `${power.names[2].name} is a ${power.type.name} move. It has a PP of ${power.pp}. ${power.effect_entries[0].short_effect} This move has an accuracy of ${power.accuracy} and a power level of ${power.power}. ${power.flavor_text_entries[2].flavor_text} Enter a different move or say no to get information about something else!`,
                 source: 'poke'
             })}
             else{
                 return res.json({
-                    fulfillmentText: `${power.names[2].name} is a ${power.type.name} move. It has a PP of ${power.pp}. ${effect} This move has an accuracy of ${power.accuracy} and a power level of ${power.power}. ${power.flavor_text_entries[2].flavor_text}`,
+                    fulfillmentText: `${power.names[2].name} is a ${power.type.name} move. It has a PP of ${power.pp}. ${effect} This move has an accuracy of ${power.accuracy} and a power level of ${power.power}. ${power.flavor_text_entries[2].flavor_text} Enter a different move or say no to get information about something else!`,
                     source: 'poke'
                 })
             }
