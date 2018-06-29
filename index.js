@@ -42,7 +42,7 @@ server.post('/poke',(req,res)=>{
         let ability= abl.effect_entries[0].short_effect;
         console.log(poke.abilities[1].ability.name)
         return res.json({
-            fulfillmentText: test+"Special ability-"+poke.abilities[1].ability.name+": "+ability+" What would like to know about "+ poke.name+"? Currently, i can give you some moves it can use.",
+            fulfillmentText: test+" Special ability - "+poke.abilities[1].ability.name+": "+ability+" What would like to know about "+ poke.name+"? Currently, i can give you some moves it can use.",
             source: 'poke'
         })
     
