@@ -106,6 +106,12 @@ server.post('/poke',(req,res)=>{
         }
         request(`${hostname}move/${move}/`,(err,resp,body)=>{
             const power= JSON.parse(body);
+            if(power.effect_chance === undefined){
+                return res.json({
+                fulfillmentText: "Sorry i dont have that move in my database, please enter a number between 1 and 719",
+                source: 'poke'
+                })
+            }
             const chance= power.effect_chance;
             const effect= (power.effect_entries[0].short_effect).replace("$effect_chance%",chance+"%");
             if(power.effect_chance === undefined){
