@@ -81,6 +81,12 @@ server.post('/poke',(req,res)=>{
             let locationNumber =req.body.queryResult.parameters.number;
             request(`${hostname}location-area/${locationNumber}/`,(err,resp,body)=>{
                 const loc= JSON.parse(body);
+                if(loc.name === undefined){
+                    return res.json({
+                        fulfillmentText: `I can't seem to find that location, please enter a different number.`,
+                        source: 'poke'
+                    })
+                }
                 return res.json({
                     fulfillmentText: `${loc.name} is the location with that id. Some of the pokemon that can be caught here are ${loc.pokemon_encounters[0].pokemon.name}, ${loc.pokemon_encounters[1].pokemon.name}, ${loc.pokemon_encounters[2].pokemon.name}, and ${loc.pokemon_encounters[3].pokemon.name}. You can encounter pokemon in this area by ${loc.encounter_method_rates[0].encounter_method.name}ing. Although other methods such as fishing could be possible keep a lookout! If you would like to get information about another area please enter a number between 1-500.`,
                     source: 'poke'
