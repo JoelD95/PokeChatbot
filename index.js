@@ -22,6 +22,11 @@ server.post('/poke',(req,res)=>{
     let test = '';
     let type2 = '';
     const poke = JSON.parse(body);
+    if (poke.detail !== undefined){
+        return res.json({
+            fulfillmentText: `Sorry i don't seem so have ${link} in my databases, please try a different pokemon!`
+        })
+    }
     if((poke.types).length === 1){
         console.log((poke.types).length)
         test = `${poke.name} is a ${poke.types[0].type.name} pokemon!`;
