@@ -46,6 +46,12 @@ server.post('/poke',(req,res)=>{
         console.log("%%%%5")
         let moveNumber =req.body.queryResult.parameters.number;
         let move = '';
+        if(moveNumber>70){
+            return res.json({
+                fulfillmentText: `Please enter a number between 1 and 70`,
+                source: 'poke'
+            })
+        }
         move =`move number ${moveNumber} is ${poke.moves[moveNumber-1].move.name}`
         request(`${hostname}move/${poke.moves[moveNumber-1].move.name}`,(err,resp,body)=>{
             const power= JSON.parse(body);
