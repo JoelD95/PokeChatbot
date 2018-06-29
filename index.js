@@ -9,7 +9,7 @@ const server = express();
 
 server.use(bodyParser.json());
 server.post('/poke',(req,res)=>{
-    if(req.body.queryResult.action==="pokemon.pokemon-custom"){
+    if(req.body.queryResult.action==="pokemon.pokemon-custom" || req.body.queryResult.action === "pokemon.pokemon-custom.getPokemon-custom.getPokemonMoves-custom"){
     let link='';
     if(req.body.queryResult.outputContexts[0].parameters.choice.number !== undefined){
         link=req.body.queryResult.outputContexts[0].parameters.choice.number;
@@ -17,6 +17,7 @@ server.post('/poke',(req,res)=>{
    else if (req.body.queryResult.outputContexts[0].parameters.choice !== ''){
         link=req.body.queryResult.outputContexts[0].parameters.choice;
     }
+    console.log("first")
     request(`${hostname}${path}${link}/`,(err,resp,body)=> {
     let test = '';
     let type2 = '';
@@ -25,7 +26,10 @@ server.post('/poke',(req,res)=>{
         console.log((poke.types).length)
         test = `${poke.name} is a ${poke.types[0].type.name} pokemon!`;
     }
-    else {test = `${poke.name} is a ${poke.types[1].type.name}, ${poke.types[0].type.name} pokemon!`;}
+    else {
+        console.log("second");
+        test = `${poke.name} is a ${poke.types[1].type.name}, ${poke.types[0].type.name} pokemon!`;
+    }
     if(req.body.queryResult.action ==="pokemon.pokemon-custom"){
         console.log("$$$$$$$$$$$$$$$")
     request(`${hostname}ability/${poke.abilities[1].ability.name}`,(err,resp,body)=> {
@@ -38,7 +42,7 @@ server.post('/poke',(req,res)=>{
         })
     
     })}
-    else if(req.body.queryResult.action === "pokemon.pokemon-custom.getPokemon-custom.getPokemonMoves-custom"){
+     if(req.body.queryResult.action === "pokemon.pokemon-custom.getPokemon-custom.getPokemonMoves-custom"){
         console.log("%%%%5")
         let moveNumber =req.body.queryResult.parameters.number;
         let move = '';
@@ -94,7 +98,7 @@ server.post('/poke',(req,res)=>{
             })}
             else{
                 return res.json({
-                    fulfillmentText: `${power.names[2].name} is a ${power.type.name} move. It has a PP of ${power.pp}. ${effect} This move has an accuracy of ${power.accuracy} and a power level of ${power.power}.`,
+                    fulfillmentText: `${power.names[2].name} is a ${power.type.name} move. It has a PP of ${power.pp}. ${effect} This move has an accuracy of ${power.accuracy} and a power level of ${power.power}. ${power.flavor_text_entries[2].flavor_text}`,
                     source: 'poke'
                 })
             }
