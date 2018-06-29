@@ -89,12 +89,12 @@ server.post('/poke',(req,res)=>{
                 }
                 if(loc.pokemon_encounters[1]=== undefined){
                     return res.json({
-                        fulfillmentText: `${loc.name} is the location with that id. Some of the pokemon that can be caught here are ${loc.pokemon_encounters[0].pokemon.name}. You can encounter pokemon in this area by ${loc.encounter_method_rates[0].encounter_method.name}ing. Although other methods such as fishing could be possible keep a lookout! If you would like to get information about another area please enter a number between 1-500.`,
+                        fulfillmentText: `${loc.name} is the location with that id. Some of the pokemon that can be caught here are ${loc.pokemon_encounters[0].pokemon.name}. You can encounter pokemon in this area by ${loc.encounter_method_rates[0].encounter_method.name}ing. Although other methods such as fishing could be possible keep a lookout! If you would like to get information about another area please enter a number between 1-500 otherwise enter no to get information about something else.`,
                         source: 'poke'
                     })
                 }
                 return res.json({
-                    fulfillmentText: `${loc.name} is the location with that id. Some of the pokemon that can be caught here are ${loc.pokemon_encounters[0].pokemon.name}, ${loc.pokemon_encounters[1].pokemon.name}, ${loc.pokemon_encounters[2].pokemon.name}, and ${loc.pokemon_encounters[3].pokemon.name}. You can encounter pokemon in this area by ${loc.encounter_method_rates[0].encounter_method.name}ing. Although other methods such as fishing could be possible keep a lookout! If you would like to get information about another area please enter a number between 1-500.`,
+                    fulfillmentText: `${loc.name} is the location with that id. Some of the pokemon that can be caught here are ${loc.pokemon_encounters[0].pokemon.name}, ${loc.pokemon_encounters[1].pokemon.name}, ${loc.pokemon_encounters[2].pokemon.name}, and ${loc.pokemon_encounters[3].pokemon.name}. You can encounter pokemon in this area by ${loc.encounter_method_rates[0].encounter_method.name}ing. Although other methods such as fishing could be possible keep a lookout! If you would like to get information about another area please enter a number between 1-500 otherwise enter no to get information about something else.`,
                     source: 'poke'
                 })
             })
