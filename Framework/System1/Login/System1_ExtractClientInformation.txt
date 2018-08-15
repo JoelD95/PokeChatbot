@@ -1,0 +1,233 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="System1_ExtractClientInformation"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:ui="http://schemas.uipath.com/workflow/activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="ClientID" Type="OutArgument(x:String)" />
+    <x:Property Name="ClientName" Type="OutArgument(x:String)" />
+    <x:Property Name="ClientCountry" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>System1_ExtractClientInformation_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Core.Activities</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="System1_ExtractClientInformation" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Recording Sequence" sap2010:WorkflowViewState.IdRef="Sequence_43">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="ui:GenericValue" Name="P" />
+        <Variable x:TypeArguments="ui:GenericValue" Name="P1" />
+        <Variable x:TypeArguments="ui:GenericValue" Name="P2" />
+      </Sequence.Variables>
+      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'ACMESyste Page'" sap2010:WorkflowViewState.IdRef="WindowScope_8" InformativeScreenshot="76239c4e765d5a03e8ef39801c8d3045" Selector="&lt;html title='ACME System 1 - Work Items' /&gt;">
+        <ui:WindowScope.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_42">
+              <Sequence DisplayName="Find relative image" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                <ui:WaitImageAppear FoundElement="{x:Null}" DisplayName="Find Image 'P'" sap2010:WorkflowViewState.IdRef="WaitImageAppear_27">
+                  <ui:WaitImageAppear.Image>
+                    <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAD4AAAARCAYAAACFOx+nAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEpSURBVFhH7ZbRkYMwDAXpiTJogzLogioogzKoxpklvIxQhIHEww/sjD6s2LIWkdxV6aY84nfjEYe6rlfR9/3yyZumaeb8NE3zWvtK0nVdGoZhWa0hz33sseso9pjFx3EMDxO6BLx4abiL+iXEiVyfs7iE7IRtUR4M7E2cvHJEVI+m27b97JEke5UjuMuzJW6HA3qA3CN875WmbTcJcmoM9sS1tqHzajIKKCkOqiO+xHOHPTlxNW6nzFoCVlxorXqaFHsjzoj7Xj3FxNV0FBDdo1deXyXVuEQ896pT0E7wV3H2Xy1Ontii2I+bXvWjTYMXP1sjqgmqEw1T7P45s4dz4uS0tqHzZ8QJ7vJsiW+F+gTfe9F/YLy8fWhHxO35f8U9WfE78Yjfi5Rep4HquiMPn8sAAAAASUVORK5CYII=" />
+                  </ui:WaitImageAppear.Image>
+                  <ui:WaitImageAppear.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                  </ui:WaitImageAppear.Target>
+                </ui:WaitImageAppear>
+                <ui:SetClippingRegion Element="{x:Null}" Region="{x:Null}" Direction="TRANSLATE" DisplayName="Translate clipping region" sap2010:WorkflowViewState.IdRef="SetClippingRegion_48">
+                  <ui:SetClippingRegion.Size>
+                    <ui:Region Rectangle="-64, 1, 131, -2" />
+                  </ui:SetClippingRegion.Size>
+                </ui:SetClippingRegion>
+              </Sequence>
+              <ui:GetVisibleText WordsInfo="{x:Null}" DisplayName="Get visible text 'P'" FormattedText="False" sap2010:WorkflowViewState.IdRef="GetVisibleText_12">
+                <ui:GetVisibleText.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="0e8de6a92a48a56609455c6e6da4aaa9" WaitForReady="COMPLETE" />
+                </ui:GetVisibleText.Target>
+                <ui:GetVisibleText.Text>
+                  <OutArgument x:TypeArguments="x:String">[ClientID]</OutArgument>
+                </ui:GetVisibleText.Text>
+              </ui:GetVisibleText>
+              <ui:SetClippingRegion Element="{x:Null}" Region="{x:Null}" Direction="RECTANGLE" DisplayName="Reset clipping region" sap2010:WorkflowViewState.IdRef="SetClippingRegion_49">
+                <ui:SetClippingRegion.Size>
+                  <ui:Region Rectangle="0, 0, 0, 0" />
+                </ui:SetClippingRegion.Size>
+              </ui:SetClippingRegion>
+              <Sequence DisplayName="Find relative image" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                <ui:WaitImageAppear FoundElement="{x:Null}" DisplayName="Find Image 'B'" sap2010:WorkflowViewState.IdRef="WaitImageAppear_28">
+                  <ui:WaitImageAppear.Image>
+                    <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFIAAAAMCAYAAADxqOocAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGVSURBVFhH7ZbtrcJADATTE2XQBmXQBVWkDMqgmqCJGLRYDh8h0ns/WGkVfLnz2ZOLyDD9tIlmkLvd7sGn02m+qfb7/Tx+uVzm2Hlb6ng8TuM43qJHnc/n+57WgPjNGPX9tQYLrKYxVUFuLfYi/zsgD4fDbfQfgswTSDMWTQPo1Ym0Id3lAxYQnCM05jqGOygJEru2A/ksnw8s53jfe9i+lf3jfJDInoZ6AzGWp8NESyCN064XZGe0BiRGFWQ3D/t2Jax0gtIqH742H7qDzMElPQMpCK6K2OYSpDI2nw3mw0sJiKKdy7U7kalch1xrnLXV3ojreiQ456uvQVpcZ2SxuY/FUCgyxzsgEb+dz7WCFLB2Xd2nA5W9Juhqa1ftq82GecLWgsxitgRZGxRknVfjLUHWWr/+s/HVromV+Z6BfJWja9gcWJAVlHnXgvR+1r6kxc+fpeTIOYgx47TrPwGJhZLqGs59K8hq130KMuNqZS+bfJBXmFnYOyA7KKmuYeQDyDXZOHmN0RqQKHPi1APIn77VNF0BlMDZqdrsfk0AAAAASUVORK5CYII=" />
+                  </ui:WaitImageAppear.Image>
+                  <ui:WaitImageAppear.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                  </ui:WaitImageAppear.Target>
+                </ui:WaitImageAppear>
+                <ui:SetClippingRegion Element="{x:Null}" Region="{x:Null}" Direction="TRANSLATE" DisplayName="Translate clipping region" sap2010:WorkflowViewState.IdRef="SetClippingRegion_50">
+                  <ui:SetClippingRegion.Size>
+                    <ui:Region Rectangle="-87, 4, 211, -2" />
+                  </ui:SetClippingRegion.Size>
+                </ui:SetClippingRegion>
+              </Sequence>
+              <ui:GetVisibleText WordsInfo="{x:Null}" DisplayName="Get visible text 'P'" FormattedText="False" sap2010:WorkflowViewState.IdRef="GetVisibleText_13">
+                <ui:GetVisibleText.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3a67f1980be5840dcad26e2929d18ca3" WaitForReady="COMPLETE" />
+                </ui:GetVisibleText.Target>
+                <ui:GetVisibleText.Text>
+                  <OutArgument x:TypeArguments="x:String">[ClientName]</OutArgument>
+                </ui:GetVisibleText.Text>
+              </ui:GetVisibleText>
+              <ui:SetClippingRegion Element="{x:Null}" Region="{x:Null}" Direction="RECTANGLE" DisplayName="Reset clipping region" sap2010:WorkflowViewState.IdRef="SetClippingRegion_51">
+                <ui:SetClippingRegion.Size>
+                  <ui:Region Rectangle="0, 0, 0, 0" />
+                </ui:SetClippingRegion.Size>
+              </ui:SetClippingRegion>
+              <Sequence DisplayName="Find relative image" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                <ui:WaitImageAppear FoundElement="{x:Null}" DisplayName="Find Image 'DIV'" sap2010:WorkflowViewState.IdRef="WaitImageAppear_29">
+                  <ui:WaitImageAppear.Image>
+                    <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGAAAAAMCAYAAACdrrgZAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHbSURBVFhH7ZXRbcMwDES7U8bIGhkjW2SKjJExMo2L5/QZV1a2lNZA+pEDDqhkkTzy2PZjeuOleBvwYvww4HA4fOPlcvn68sDxeJzv7/f7fPbdnjifz9P1ev06tXG73ZbakrtXAK1o/g0WA1oNyUxeDdgb1CL/lgEsRepL9ozbG9Sj7p8NcLC58SaHblfvN4B772ArH2JPp9PyxqHVwVKrIvPnxmscTGQdmItjvdS41l/OgpygtbTEWbPWNg4YOxvgIR8I7hwQ6BngOWl8NlEJRgxoDU1wnwNWa6XGPWNAJb30DJAsR81r7dkABzPya7RlQKshzg4yDRCezecma1pF77uwlrWB+ly0lt61/qxnfWOsk7PTgLyzlnl8s6sBimsRbIl1K82h0Ired1EbFtxpyjMGiNrDSE+AfL7zZ951/wQRMCrQ4bTI+xGx5lgbcGtoAm3m8d1/MQCY2xjq7vpPeK1pMSK2l8PtyRigcRBYy2EDc7tontVDPnOMGmDMiAHWyxkuBmTxSgWDLQNyOEnjnzEA5vAS+aaSb0KtlWpXT4vPGiCJWzMg52NviwHCBzIbAlsGgCwC07wRA1oiW2gtTG0YmF+qW6DFb/zc66/VQxpN3JoBwLePuU7TJ2eODvPd61VeAAAAAElFTkSuQmCC" />
+                  </ui:WaitImageAppear.Image>
+                  <ui:WaitImageAppear.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                  </ui:WaitImageAppear.Target>
+                </ui:WaitImageAppear>
+                <ui:SetClippingRegion Element="{x:Null}" Region="{x:Null}" Direction="TRANSLATE" DisplayName="Translate clipping region" sap2010:WorkflowViewState.IdRef="SetClippingRegion_52">
+                  <ui:SetClippingRegion.Size>
+                    <ui:Region Rectangle="-106, 1, 197, 1" />
+                  </ui:SetClippingRegion.Size>
+                </ui:SetClippingRegion>
+              </Sequence>
+              <ui:GetVisibleText WordsInfo="{x:Null}" DisplayName="Get visible text 'P'" FormattedText="False" sap2010:WorkflowViewState.IdRef="GetVisibleText_14">
+                <ui:GetVisibleText.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7e27ed21f6bdd39413b7a38e6009a19e" WaitForReady="COMPLETE" />
+                </ui:GetVisibleText.Target>
+                <ui:GetVisibleText.Text>
+                  <OutArgument x:TypeArguments="x:String">[ClientCountry]</OutArgument>
+                </ui:GetVisibleText.Text>
+              </ui:GetVisibleText>
+              <ui:SetClippingRegion Element="{x:Null}" Region="{x:Null}" Direction="RECTANGLE" DisplayName="Reset clipping region" sap2010:WorkflowViewState.IdRef="SetClippingRegion_53">
+                <ui:SetClippingRegion.Size>
+                  <ui:Region Rectangle="0, 0, 0, 0" />
+                </ui:SetClippingRegion.Size>
+              </ui:SetClippingRegion>
+            </Sequence>
+          </ActivityAction>
+        </ui:WindowScope.Body>
+      </ui:WindowScope>
+    </Sequence>
+    <sads:DebugSymbol.Symbol>d2RDOlxVc2Vyc1xqb2VsLmRlamVzdXNcRG9jdW1lbnRzXFVpUGF0aFxGcmFtZXdvcmtcU3lzdGVtMVxMb2dpblxTeXN0ZW0xX0V4dHJhY3RDbGllbnRJbmZvcm1hdGlvbi54YW1sGkQDrAEOAgEBRQWqARACAQJLB6kBGAIBA0uRAkvEAgIBHVENpgEYAgEEUg9gGgIBGWEPaCMCARZpD20mAgEVbg98GgIBEX0PhAEjAgEOhQEPiQEmAgENigEPmAEaAgEJmQEPoAEjAgEGoQEPpQEmAgEFUxFaJgIBG1sRXygCARpmO2ZFAgEXbxF2JgIBE3cReygCARKCATuCAUcCAQ+LARGSASYCAQuTARGXASgCAQqeATueAUoCAQdVP1VEAgEccT9xRAIBFI0BP40BRAIBDA==</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="WaitImageAppear_27" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="SetClippingRegion_48" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="Sequence_39" sap:VirtualizedContainerService.HintSize="336,292">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetVisibleText_12" sap:VirtualizedContainerService.HintSize="336,106" />
+      <sap2010:ViewStateData Id="SetClippingRegion_49" sap:VirtualizedContainerService.HintSize="336,22" />
+      <sap2010:ViewStateData Id="WaitImageAppear_28" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="SetClippingRegion_50" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="Sequence_40" sap:VirtualizedContainerService.HintSize="336,292">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetVisibleText_13" sap:VirtualizedContainerService.HintSize="336,106" />
+      <sap2010:ViewStateData Id="SetClippingRegion_51" sap:VirtualizedContainerService.HintSize="336,22" />
+      <sap2010:ViewStateData Id="WaitImageAppear_29" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="SetClippingRegion_52" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="Sequence_41" sap:VirtualizedContainerService.HintSize="336,292">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetVisibleText_14" sap:VirtualizedContainerService.HintSize="336,106" />
+      <sap2010:ViewStateData Id="SetClippingRegion_53" sap:VirtualizedContainerService.HintSize="336,22" />
+      <sap2010:ViewStateData Id="Sequence_42" sap:VirtualizedContainerService.HintSize="358,1704">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WindowScope_8" sap:VirtualizedContainerService.HintSize="414,1850" />
+      <sap2010:ViewStateData Id="Sequence_43" sap:VirtualizedContainerService.HintSize="436,1974">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="458,2098">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="System1_ExtractClientInformation_1" sap:VirtualizedContainerService.HintSize="498,2218" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>
